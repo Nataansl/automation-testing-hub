@@ -1,0 +1,34 @@
+# Node
+node_modules/
+cypress-cache/
+
+# Cypress (arquivos gerados)
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/reports/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variáveis de ambiente (credenciais)
+.env
+.env.*
+.env.dev
+.env.prod
+!.env.example
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Arquivos temporários
+*.tmp
+*.log
+

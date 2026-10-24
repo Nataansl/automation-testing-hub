@@ -1,0 +1,28 @@
+name: Cypress E2E
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+# Configure em Settings > Secrets and variables > Actions:
+#   BASE_URL_DEV, DEV_USER, DEV_PASSWORD
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:22.15.0
+    env:
+      BASE_URL_DEV: ${{ secrets.BASE_URL_DEV }}
+      DEV_USER: ${{ secrets.DEV_USER }}
+      DEV_PASSWORD: ${{ secrets.DEV_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run cy:run:dev
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-reports
+          path: |
+            cypress/reports/
+            cypress/screenshots/
+          retention-days: 1

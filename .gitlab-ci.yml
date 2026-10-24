@@ -1,0 +1,23 @@
+stages:
+  - test
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm/
+    - cypress-cache/
+
+# Configure em Settings > CI/CD > Variables (marcadas como "Masked"):
+#   BASE_URL_DEV, DEV_USER, DEV_PASSWORD (e/ou as equivalentes de PROD)
+test:
+  image: cypress/browsers:22.15.0
+  stage: test
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - npm run cy:run:dev
+  artifacts:
+    when: always
+    paths:
+      - cypress/reports/
+      - cypress/screenshots/
+    expire_in: 1 day
