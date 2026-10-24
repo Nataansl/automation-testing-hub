@@ -15,7 +15,7 @@
     "qa",
     "page-object"
   ],
-  "author": "",
+  "author": "Natan (https://github.com/Nataansl)",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^10.1.0",
